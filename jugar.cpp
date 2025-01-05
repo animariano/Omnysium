@@ -30,16 +30,6 @@ void jugar()
     };
     int numeroEnemigos = sizeof(enemigos) / sizeof(enemigos[0]);
 
-    /**     definido directamente en el eventos.h, pero lo dejo aca para ir viendo...
-    Evento eventos[] =
-    {
-        {"Trampa Oculta", "Una trampa escondida que podría dañarte.", trampa},
-        {"Equipo Abandonado", "Encuentras equipo que mejora tu ataque.", equipoEncontrado},
-        {"Cofre del Tesoro", "Un cofre escondido lleno de oro.", oroEncontrado},
-        {"Fuente de Salud" , "Una fuente curativa.", fuenteSalud}
-    };
-    */
-
     Heroe heroe = seleccionarPersonaje();
     system("cls");
     cout << "Has elegido jugar como " << heroe.nombre << "!" << endl;

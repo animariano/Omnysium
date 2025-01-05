@@ -22,6 +22,7 @@ struct Heroe {
 Heroe seleccionarPersonaje();
 Heroe crearPaladin();
 Heroe crearMago();
+Heroe crearBerserker();
 
 
 int lanzarDado(int caras) ;

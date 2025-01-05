@@ -6,6 +6,7 @@
 #include "eventos.h"
 
 
+
 using namespace std;
 
 Heroe seleccionarPersonaje()
@@ -18,7 +19,12 @@ Heroe seleccionarPersonaje()
     rlutil::setColor(rlutil::RED);
     cout << "2- Mago. ";
     rlutil::setColor(rlutil::WHITE);
-    cout << "Poco ataque y salud, pero con hechizos de potenciacion poderosos(en Desarrollo)." << endl;
+    cout << "Poco ataque y salud, pero con hechizos de potenciacion poderosos. " << endl;
+    rlutil::setColor(rlutil::BROWN);
+    cout << "3- Berserker. ";
+    rlutil::setColor(rlutil::WHITE);
+    cout << "Poderosos ataques, incluso a costa de su propia salud. " << endl;
+
 
     int eleccion;
     cin >> eleccion;
@@ -31,6 +37,11 @@ Heroe seleccionarPersonaje()
     else if (eleccion == 2)
     {
         return crearMago();
+        cout<< endl;
+    }
+    else if (eleccion == 3)
+    {
+        return crearBerserker();
         cout<< endl;
     }
     else
@@ -49,6 +60,10 @@ Heroe crearPaladin()
 Heroe crearMago()
 {
     return {"Mago", 6, 1, 0, "Bola de Fuego. "};
+}
+Heroe crearBerserker()
+{
+    return {"Berserker", 6, 4, 0, "Cabezaso. "};
 }
 
 // Función para lanzar un dado
@@ -76,7 +91,7 @@ void usarHabilidadEspecial(string clase, int& ataqueHeroe, int& saludHeroe, int&
 {
     if (clase == "Paladin")
     {
-        saludHeroe = min(saludHeroe + 3, 12); //no excede el máximo
+        saludHeroe = min(saludHeroe + 3, 12); //cantidad sanada, maximo de vida
         cout << "Usas la habilidad especial: Curacion. Tu salud ahora es " << saludHeroe << "." << endl;
     }
     else if (clase == "Mago")
@@ -84,6 +99,13 @@ void usarHabilidadEspecial(string clase, int& ataqueHeroe, int& saludHeroe, int&
         int dano = ataqueHeroe + 3; // Bola de fuego hace 3 más de dano
         saludEnemigo -= dano;
         cout << "Lanzas una Bola de Fuego y haces " << dano << " de dano al enemigo!" << endl;
+    }
+    else if (clase == "Berserker")
+    {
+        int dano = ataqueHeroe*2;
+        saludEnemigo -= dano;
+        saludHeroe = saludHeroe/2;
+        cout << "Tomas al enemigo y le das un fuerte cabezaso, le haces "<< dano << " y debido a la fuerza te lastimas. Pierdes la mitad de tu salud. Salud -"<< saludHeroe<<endl;
     }
 }
 
@@ -117,6 +139,7 @@ bool combatir(string& nombre, int& saludHeroe, int& ataqueHeroe, int& oroAcumula
         cout << "1- Atacar: Hace " << ataqueHeroe << " de dano (1 a 3 para acertar)." << endl;
         cout << "2- Usar habilidad especial." << endl;
 
+      //  cout << "2- Habilidad especial: " << heroe.habilidadEspecial<<endl; despues ver porque no funciona, chequear parametros
         int eleccion;
         cin >> eleccion;
 
@@ -142,7 +165,7 @@ bool combatir(string& nombre, int& saludHeroe, int& ataqueHeroe, int& oroAcumula
                 }
             }
 
-            if (nombre=="Paladin")
+            if (nombre=="Paladin" || nombre=="Berserker" )
             {
 
                 cout << "Has atacado, debes hacer un lanzamiento 3 o menos para acertar..." << endl;
@@ -339,9 +362,9 @@ void mercado(int &saludHeroe, int &ataqueHeroe, int &oroAcumulado)
     cout << "Objetos disponibles:" << endl;
     cout << "1- Comprar pocion de salud (+2 salud) por 3 de oro." << endl;
     cout << "2- Comprar espada de hierro (+1 ataque) por 5 de oro." << endl;
-    cout << "3- Comprar armadura de cuero (+1 salud) por 5 de oro." << endl;
+    cout << "3- Comprar armadura de cuero (+3 salud) por 5 de oro." << endl;
     cout << "4- Comprar espada de acero (+2 ataque) por 8 de oro." << endl;
-    cout << "5- Comprar armadura de placas (+2 salud) por 8 de oro." << endl;
+    cout << "5- Comprar armadura de placas (+4 salud) por 8 de oro." << endl;
     cout << "6- Salir." << endl;
     cout << endl;
     int eleccion;
@@ -375,7 +398,7 @@ void mercado(int &saludHeroe, int &ataqueHeroe, int &oroAcumulado)
     case 3:
         if (oroAcumulado >= 5)
         {
-            saludHeroe += 1;
+            saludHeroe += 3;
             oroAcumulado -= 5;
             cout << "Has comprado una armadura de cuero. Tu salud ahora es " << saludHeroe << "." << endl;
         }
@@ -399,7 +422,7 @@ void mercado(int &saludHeroe, int &ataqueHeroe, int &oroAcumulado)
     case 5:
         if (oroAcumulado >= 8)
         {
-            saludHeroe += 2;
+            saludHeroe += 4;
             oroAcumulado -= 8;
             cout << "Has comprado una armadura de placas. Tu salud ahora es " << saludHeroe << "." << endl;
         }

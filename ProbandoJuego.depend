@@ -59,7 +59,7 @@
 1735500272 c:\users\usuario\desktop\probandojuego\omnysium- juego\eventos.h
 	<string>
 
-1736035940 c:\users\usuario\desktop\probandojuego\omnysium- juego\funciones.h
+1736046596 c:\users\usuario\desktop\probandojuego\omnysium- juego\funciones.h
 	<string>
 
 1735224050 c:\users\usuario\desktop\probandojuego\omnysium- juego\rlutil.h
@@ -76,7 +76,7 @@
 	<sys/types.h>
 	<sys/time.h>
 
-1735612368 source:c:\users\usuario\desktop\probandojuego\omnysium- juego\funciones.cpp
+1736047071 source:c:\users\usuario\desktop\probandojuego\omnysium- juego\funciones.cpp
 	<iostream>
 	"funciones.h"
 	"rlutil.h"
@@ -99,5 +99,56 @@
 	<ctime>
 	"funciones.h"
 	"jugar.h"
+	"rlutil.h"
+
+1735501529 source:c:\users\usuario\desktop\omnysium versiones\omnysium- juego\eventos.cpp
+	"eventos.h"
+	"funciones.h"
+	"rlutil.h"
+	<iostream>
+
+1735500272 c:\users\usuario\desktop\omnysium versiones\omnysium- juego\eventos.h
+	<string>
+
+1736046596 c:\users\usuario\desktop\omnysium versiones\omnysium- juego\funciones.h
+	<string>
+
+1735224050 c:\users\usuario\desktop\omnysium versiones\omnysium- juego\rlutil.h
+	<iostream>
+	<string>
+	<cstdio>
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+	<termios.h>
+	<unistd.h>
+	<sys/ioctl.h>
+	<sys/types.h>
+	<sys/time.h>
+
+1736047071 source:c:\users\usuario\desktop\omnysium versiones\omnysium- juego\funciones.cpp
+	<iostream>
+	"funciones.h"
+	"rlutil.h"
+	"eventos.h"
+
+1735515385 source:c:\users\usuario\desktop\omnysium versiones\omnysium- juego\main.cpp
+	<iostream>
+	<ctime>
+	"funciones.h"
+	"jugar.h"
+	"rlutil.h"
+
+1735148463 c:\users\usuario\desktop\omnysium versiones\omnysium- juego\jugar.h
+	"funciones.h"
+
+1736047199 source:c:\users\usuario\desktop\omnysium versiones\omnysium- juego\jugar.cpp
+	<iostream>
+	"funciones.h"
+	"jugar.h"
+	"eventos.h"
+	<cstdlib>
+	<ctime>
 	"rlutil.h"
 
