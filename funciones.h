@@ -14,7 +14,8 @@ struct Heroe {
     int salud;
     int ataque;
     int oro;
-    std::string habilidadEspecial; //por ahora una sola
+    std::string habilidadEspecial;//por ahora una sola
+    std::string habilidadDefinitiva;
 };
 
 
@@ -31,6 +32,7 @@ bool combatir(std::string& nombre, int& saludHeroe, int& ataqueHeroe, int& oroAc
 void seleccionarRecompensa(int& saludHeroe, int& ataqueHeroe, int& oroAcumulado);
 void ejecutarEventoAleatorio(int& saludHeroe, int& ataqueHeroe, int& oroAcumulado);
 void usarHabilidadEspecial(std::string clase, int &ataqueHeroe, int &saludHeroe, int &saludEnemigo, std::string habilidadEspecial);
+void usarHabilidadDefinitiva(std::string clase,int &ataqueHeroe, int &saludHeroe, int &saludEnemigo, std::string habilidadDefinitiva);
 void mostrarVictoria(std::string nombre);
 void mercado(int &saludHeroe, int &ataqueHeroe, int &oroAcumulado);
 void MostrarMercadoCada(int &saludHeroe, int &ataqueHeroe, int &oroAcumulado);

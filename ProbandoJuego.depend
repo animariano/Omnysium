@@ -110,7 +110,7 @@
 1735500272 c:\users\usuario\desktop\omnysium versiones\omnysium- juego\eventos.h
 	<string>
 
-1736046596 c:\users\usuario\desktop\omnysium versiones\omnysium- juego\funciones.h
+1736104761 c:\users\usuario\desktop\omnysium versiones\omnysium- juego\funciones.h
 	<string>
 
 1735224050 c:\users\usuario\desktop\omnysium versiones\omnysium- juego\rlutil.h
@@ -127,7 +127,7 @@
 	<sys/types.h>
 	<sys/time.h>
 
-1736047071 source:c:\users\usuario\desktop\omnysium versiones\omnysium- juego\funciones.cpp
+1736106358 source:c:\users\usuario\desktop\omnysium versiones\omnysium- juego\funciones.cpp
 	<iostream>
 	"funciones.h"
 	"rlutil.h"
@@ -143,7 +143,7 @@
 1735148463 c:\users\usuario\desktop\omnysium versiones\omnysium- juego\jugar.h
 	"funciones.h"
 
-1736047199 source:c:\users\usuario\desktop\omnysium versiones\omnysium- juego\jugar.cpp
+1736104525 source:c:\users\usuario\desktop\omnysium versiones\omnysium- juego\jugar.cpp
 	<iostream>
 	"funciones.h"
 	"jugar.h"

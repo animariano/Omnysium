@@ -41,6 +41,7 @@ void jugar()
     }
     cout << "Salud: " << heroe.salud << ", Ataque: " << heroe.ataque << endl;
     cout << "Habilidad especial: " << heroe.habilidadEspecial<<endl;
+    cout << "Habilidad Definitiva: "<<heroe.habilidadDefinitiva<<endl;
     rlutil::anykey();
     system("cls");
 

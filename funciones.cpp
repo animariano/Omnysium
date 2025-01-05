@@ -54,16 +54,16 @@ Heroe seleccionarPersonaje()
 
 Heroe crearPaladin()
 {
-    return {"Paladin", 6, 3, 0, "Curar. "};
+    return {"Paladin", 6, 3, 0, "Curar. ", "Golpe Sanador"};
 }
 
 Heroe crearMago()
 {
-    return {"Mago", 6, 1, 0, "Bola de Fuego. "};
+    return {"Mago", 6, 1, 0, "Bola de Fuego. ", "Escudo de Fuego"};
 }
 Heroe crearBerserker()
 {
-    return {"Berserker", 6, 4, 0, "Cabezaso. "};
+    return {"Berserker", 6, 4, 0, "Cabezaso. ", "Arremetida Suicida"};
 }
 
 // Función para lanzar un dado
@@ -109,6 +109,43 @@ void usarHabilidadEspecial(string clase, int& ataqueHeroe, int& saludHeroe, int&
     }
 }
 
+//usar habilidad definitiva (1 solo uso)
+bool habilidadUsada = false;
+bool escudoDeFuego = false;
+
+void usarHabilidadDefinitiva(string clase, int &ataqueHeroe, int &saludHeroe, int &saludEnemigo)
+{
+    if (habilidadUsada == true)
+    {
+        cout << "Ya has usado tu habilidad definitiva." << endl;
+        return;
+    }
+
+    if (clase == "Paladin")
+    {
+        int dano = ataqueHeroe;
+        saludHeroe = saludHeroe+3;
+        saludEnemigo -= dano;
+        cout << "Usas la habilidad Definitiva: Golpe Sanador. Haces "<<dano<<" de dano al enemigo!"<<endl;
+        cout << "Tu salud ahora es " << saludHeroe << "." << endl;
+        habilidadUsada = true;
+    }
+    else if (clase == "Mago")
+    {
+        escudoDeFuego = true;
+        cout << "Has activado el escudo de fuego. Cualquier enemigo que te ataque recibira 2 de dano." << endl;
+        habilidadUsada = true;
+    }
+    else if (clase == "Berserker")
+    {
+        int dano = ataqueHeroe*3;
+        saludEnemigo -= dano;
+        saludHeroe = 1;
+        cout << "Te abalanzas al enemigo con toda tu fuerza y le haces "<< dano << " y debido a la fuerza te lastimas. A duras penas sigues vivo..."<<endl;
+        habilidadUsada = true;
+    }
+}
+
 
 // Función para manejar el combate
 bool combatir(string& nombre, int& saludHeroe, int& ataqueHeroe, int& oroAcumulado, Enemigo enemigo, string claseHeroe)
@@ -139,7 +176,12 @@ bool combatir(string& nombre, int& saludHeroe, int& ataqueHeroe, int& oroAcumula
         cout << "1- Atacar: Hace " << ataqueHeroe << " de dano (1 a 3 para acertar)." << endl;
         cout << "2- Usar habilidad especial." << endl;
 
-      //  cout << "2- Habilidad especial: " << heroe.habilidadEspecial<<endl; despues ver porque no funciona, chequear parametros
+        //cout << "2- Habilidad especial: " << claseHeroe <<endl; //despues ver porque no funciona la info de la habilidad, chequear parametros
+        if (habilidadUsada==false)
+        {
+            cout << "3- Usar habilidad Definitiva." << endl;
+        }
+
         int eleccion;
         cin >> eleccion;
 
@@ -188,6 +230,10 @@ bool combatir(string& nombre, int& saludHeroe, int& ataqueHeroe, int& oroAcumula
         {
             usarHabilidadEspecial(claseHeroe, ataqueHeroe, saludHeroe, enemigo.salud);
         }
+        else if (eleccion == 3)
+        {
+            usarHabilidadDefinitiva(claseHeroe, ataqueHeroe, saludHeroe, enemigo.salud);
+        }
         else
         {
             cout << "Opcion no valida, atacas normalmente." << endl;
@@ -198,6 +244,7 @@ bool combatir(string& nombre, int& saludHeroe, int& ataqueHeroe, int& oroAcumula
         system("cls");
 
         // Turno del enemigo (si sigue vivo)
+
         if (enemigo.salud > 0)
         {
             cout << "Turno del enemigo!" << endl;
@@ -275,6 +322,11 @@ bool combatir(string& nombre, int& saludHeroe, int& ataqueHeroe, int& oroAcumula
                     cout << "No pudiste evadir su ataque y te hizo " << enemigo.ataque << " de dano." << endl;
                     saludHeroe -= enemigo.ataque;
                     rlutil::setColor(rlutil::WHITE);
+                    if (escudoDeFuego==true)
+                    {
+                        cout << "Tu escudo de fuego lastima al enemigo y le hace 2 de dano. " << endl;
+                    }
+
                 }
                 rlutil::anykey();
                 system("cls");
