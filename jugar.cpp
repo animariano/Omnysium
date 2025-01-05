@@ -69,6 +69,8 @@ void jugar()
             seleccionarRecompensa(heroe.salud, heroe.ataque, heroe.oro);
 
             ejecutarEventoAleatorio(heroe.salud, heroe.ataque, heroe.oro);
+
+            MostrarMercadoCada(heroe.salud, heroe.ataque, heroe.oro);
         }
     }
     mostrarVictoria(nombre);

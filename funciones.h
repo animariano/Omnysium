@@ -31,6 +31,8 @@ void seleccionarRecompensa(int& saludHeroe, int& ataqueHeroe, int& oroAcumulado)
 void ejecutarEventoAleatorio(int& saludHeroe, int& ataqueHeroe, int& oroAcumulado);
 void usarHabilidadEspecial(std::string clase, int &ataqueHeroe, int &saludHeroe, int &saludEnemigo, std::string habilidadEspecial);
 void mostrarVictoria(std::string nombre);
+void mercado(int &saludHeroe, int &ataqueHeroe, int &oroAcumulado);
+void MostrarMercadoCada(int &saludHeroe, int &ataqueHeroe, int &oroAcumulado);
 void mostrarDerrota();
 void dibujarMago();
 void dibujarPaladin();

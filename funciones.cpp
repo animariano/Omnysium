@@ -328,6 +328,108 @@ void seleccionarRecompensa(int& saludHeroe, int& ataqueHeroe, int& oroAcumulado)
     system("cls");
 }
 
+void mercado(int &saludHeroe, int &ataqueHeroe, int &oroAcumulado)
+{
+    cout << "Bienvenido al mercado! Deseas adquirir algun objeto para continuar tu viaje?" << endl;
+    cout << "Oro disponible: ";
+    rlutil::setColor(rlutil::YELLOW);
+    cout << oroAcumulado;
+    rlutil::setColor(rlutil::WHITE);
+    cout << endl;
+    cout << "Objetos disponibles:" << endl;
+    cout << "1- Comprar pocion de salud (+2 salud) por 3 de oro." << endl;
+    cout << "2- Comprar espada de hierro (+1 ataque) por 5 de oro." << endl;
+    cout << "3- Comprar armadura de cuero (+1 salud) por 5 de oro." << endl;
+    cout << "4- Comprar espada de acero (+2 ataque) por 8 de oro." << endl;
+    cout << "5- Comprar armadura de placas (+2 salud) por 8 de oro." << endl;
+    cout << "6- Salir." << endl;
+    cout << endl;
+    int eleccion;
+    cin >> eleccion;
+    switch (eleccion)
+    {
+    case 1:
+        if (oroAcumulado >= 3)
+        {
+            saludHeroe += 2;
+            oroAcumulado -= 3;
+            cout << "Has comprado una pocion de salud. Tu salud ahora es " << saludHeroe << "." << endl;
+        }
+        else
+        {
+            cout << "No tienes suficiente oro para comprar la pocion." << endl;
+        }
+        break;
+    case 2:
+        if (oroAcumulado >= 5)
+        {
+            ataqueHeroe += 1;
+            oroAcumulado -= 5;
+            cout << "Has comprado una espada de hierro. Tu ataque ahora es " << ataqueHeroe << "." << endl;
+        }
+        else
+        {
+            cout << "No tienes suficiente oro para comprar la espada." << endl;
+        }
+        break;
+    case 3:
+        if (oroAcumulado >= 5)
+        {
+            saludHeroe += 1;
+            oroAcumulado -= 5;
+            cout << "Has comprado una armadura de cuero. Tu salud ahora es " << saludHeroe << "." << endl;
+        }
+        else
+        {
+            cout << "No tienes suficiente oro para comprar la armadura." << endl;
+        }
+        break;
+    case 4:
+        if (oroAcumulado >= 8)
+        {
+            ataqueHeroe += 2;
+            oroAcumulado -= 8;
+            cout << "Has comprado una espada de acero. Tu ataque ahora es " << ataqueHeroe << "." << endl;
+        }
+        else
+        {
+            cout << "No tienes suficiente oro para comprar la espada." << endl;
+        }
+        break;
+    case 5:
+        if (oroAcumulado >= 8)
+        {
+            saludHeroe += 2;
+            oroAcumulado -= 8;
+            cout << "Has comprado una armadura de placas. Tu salud ahora es " << saludHeroe << "." << endl;
+        }
+        else
+        {
+            cout << "No tienes suficiente oro para comprar la armadura." << endl;
+        }
+        break;
+    case 6:
+        cout << "Saliendo..." << endl;
+        break;
+    default:
+        cout << "Opcion no valida." << endl;
+        break;
+    }
+    system("pause");
+    system("cls");
+}
+
+//hace que el mercado salga cada x combates
+void MostrarMercadoCada(int &saludHeroe, int &ataqueHeroe, int &oroAcumulado)
+{
+    static int contador = 0;
+    contador++;
+    if (contador % 2 == 0)
+    {
+        mercado(saludHeroe, ataqueHeroe, oroAcumulado);
+    }
+}
+
 
 void mostrarVictoria(string nombre)
 {
