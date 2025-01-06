@@ -15,6 +15,7 @@ void trampa(int& saludHeroe, int& ataqueHeroe, int& oroAcumulado);
 void equipoEncontrado(int& saludHeroe, int& ataqueHeroe, int& oroAcumulado);
 void oroEncontrado(int& saludHeroe, int& ataqueHeroe, int& oroAcumulado);
 void fuenteSalud(int& saludHeroe, int&ataqueHeroe, int& OroAcumulado);
+void cuevaMisteriosa(int& saludHeroe, int& ataqueHeroe, int& oroAcumulado);
 
 // Declaración de la lista de eventos
 extern Evento eventos[];

@@ -48,7 +48,7 @@ void jugar()
 
     for (int i = 0; i < numeroEnemigos; i++)
     {
-       bool victoria = combatir(heroe.nombre, heroe.salud, heroe.ataque, heroe.oro, enemigos[i], heroe.nombre);
+       bool victoria = combatir(heroe.nombre, heroe.salud, heroe.ataque, heroe.oro, enemigos[i], heroe.nombre, heroe.habilidadEspecial, heroe.habilidadDefinitiva);
 
        if (!victoria)
         {

@@ -54,16 +54,16 @@ Heroe seleccionarPersonaje()
 
 Heroe crearPaladin()
 {
-    return {"Paladin", 6, 3, 0, "Curar. ", "Golpe Sanador"};
+    return {"Paladin", 6, 3, 0, "Curar (Recupera 4 de salud)", "Golpe Sanador (Hace dano y te curas la misma cantidad)"};
 }
 
 Heroe crearMago()
 {
-    return {"Mago", 6, 1, 0, "Bola de Fuego. ", "Escudo de Fuego"};
+    return {"Mago", 6, 1, 0, "Bola de Fuego (Hace la mitad de tu dano directo)", "Escudo de Fuego (Devuelve 2 de dano cada vez que recibes un ataque)"};
 }
 Heroe crearBerserker()
 {
-    return {"Berserker", 6, 4, 0, "Cabezaso. ", "Arremetida Suicida"};
+    return {"Berserker", 6, 4, 0, "Cabezaso (Hace el doble de dano, pero pierdes la mitad de tu salud)", "Arremetida Suicida (Hace el triple de dano pero quedas a 1 de salud)"};
 }
 
 // Función para lanzar un dado
@@ -83,7 +83,7 @@ void mostrarEstado(string nombre,int saludHeroe, int oroAcumulado)
     cout << "\t" << "ORO ACUMULADO: " << oroAcumulado << " PUNTOS" << endl;
     rlutil::setColor(rlutil::WHITE);
     cout << "\t" << "--------------------------\n";
-    system("pause>null");
+    //system("pause>null");
 }
 
 
@@ -96,7 +96,7 @@ void usarHabilidadEspecial(string clase, int& ataqueHeroe, int& saludHeroe, int&
     }
     else if (clase == "Mago")
     {
-        int dano = ataqueHeroe + 3; // Bola de fuego hace 3 más de dano
+        int dano = ataqueHeroe/2;
         saludEnemigo -= dano;
         cout << "Lanzas una Bola de Fuego y haces " << dano << " de dano al enemigo!" << endl;
     }
@@ -105,7 +105,7 @@ void usarHabilidadEspecial(string clase, int& ataqueHeroe, int& saludHeroe, int&
         int dano = ataqueHeroe*2;
         saludEnemigo -= dano;
         saludHeroe = saludHeroe/2;
-        cout << "Tomas al enemigo y le das un fuerte cabezaso, le haces "<< dano << " y debido a la fuerza te lastimas. Pierdes la mitad de tu salud. Salud -"<< saludHeroe<<endl;
+        cout << "Tomas al enemigo y le das un fuerte cabezaso, le haces "<< dano << " y debido a la fuerza te lastimas. Pierdes la mitad de tu salud."<<endl;
     }
 }
 
@@ -148,7 +148,7 @@ void usarHabilidadDefinitiva(string clase, int &ataqueHeroe, int &saludHeroe, in
 
 
 // Función para manejar el combate
-bool combatir(string& nombre, int& saludHeroe, int& ataqueHeroe, int& oroAcumulado, Enemigo enemigo, string claseHeroe)
+bool combatir(string& nombre, int& saludHeroe, int& ataqueHeroe, int& oroAcumulado, Enemigo enemigo, string claseHeroe, string habilidadEspecial, string habilidadDefinitiva)
 {
     cout << "Te topas con " << enemigo.nombre << " con " << enemigo.salud << " de salud y "
          << enemigo.ataque << " de ataque. Debes pelear!" << endl;
@@ -174,12 +174,10 @@ bool combatir(string& nombre, int& saludHeroe, int& ataqueHeroe, int& oroAcumula
         cout << " | Salud " << enemigo.nombre << ": " << enemigo.salud << endl;
         cout << "----------------------------------------------------" << endl;
         cout << "1- Atacar: Hace " << ataqueHeroe << " de dano (1 a 3 para acertar)." << endl;
-        cout << "2- Usar habilidad especial." << endl;
-
-        //cout << "2- Habilidad especial: " << claseHeroe <<endl; //despues ver porque no funciona la info de la habilidad, chequear parametros
+        cout << "2- Usar habilidad especial: " << habilidadEspecial << endl;
         if (habilidadUsada==false)
         {
-            cout << "3- Usar habilidad Definitiva." << endl;
+            cout << "3- Usar habilidad Definitiva: " << habilidadDefinitiva<< endl;
         }
 
         int eleccion;
@@ -240,7 +238,7 @@ bool combatir(string& nombre, int& saludHeroe, int& ataqueHeroe, int& oroAcumula
             enemigo.salud -= ataqueHeroe;
         }
 
-        system("pause");
+        rlutil::anykey();
         system("cls");
 
         // Turno del enemigo (si sigue vivo)
@@ -362,7 +360,7 @@ void ejecutarEventoAleatorio(int& saludHeroe, int& ataqueHeroe, int& oroAcumulad
 
     eventoSeleccionado.efecto(saludHeroe, ataqueHeroe, oroAcumulado);
 
-    system("pause");
+    rlutil::anykey();
     system("cls");
 }
 
