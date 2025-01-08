@@ -26,7 +26,14 @@ void jugar()
         {"Goblin", 4, 2},
         {"Pirata", 5, 2},
         {"Orco", 6, 3},
-        {"Dragon", 10, 5}
+        {"Ladron", 8, 5},
+        {"Vampiro", 15, 5},
+        {"Elfo Oscuro", 15, 5},
+        {"Hombre Lobo", 17, 6},
+        {"Lider Cultista", 20, 7},
+        {"Demonio", 25, 8},
+        {"Dragon", 30, 10}
+
     };
     int numeroEnemigos = sizeof(enemigos) / sizeof(enemigos[0]);
 

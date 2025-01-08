@@ -171,8 +171,8 @@ bool combatir(string& nombre, int& saludHeroe, int& ataqueHeroe, int& oroAcumula
             cout << saludHeroe;
             rlutil::setColor(rlutil::WHITE);
         }
-        cout << " | Salud " << enemigo.nombre << ": " << enemigo.salud << endl;
-        cout << "----------------------------------------------------" << endl;
+        cout << " ||| " << enemigo.nombre << " Salud : " << enemigo.salud << " | Ataque: " << enemigo.ataque << endl;
+        cout << "--------------------------------------------------------------------" << endl;
         cout << "1- Atacar: Hace " << ataqueHeroe << " de dano (1 a 3 para acertar)." << endl;
         cout << "2- Usar habilidad especial: " << habilidadEspecial << endl;
         if (habilidadUsada==false)
@@ -250,37 +250,17 @@ bool combatir(string& nombre, int& saludHeroe, int& ataqueHeroe, int& oroAcumula
             accionEnemigo = lanzarDado(6);
             if (accionEnemigo==6)
             {
-                if(enemigo.nombre == "Goblin")
-                {
-                    cout << "Te ataca con un golpe critico! Debes hacer un lanzamiento de 3 o menos para esquivar!" << endl;
-                    rlutil::anykey();
-                    int resultado = lanzarDado(6);
-                    cout << "Resultado del dado: " << resultado << endl;
 
-                    if (resultado <= 3)
-                    {
-                        cout << "Esquive exitoso! " << endl;
-                    }
-                    else
-                    {
-                        rlutil::setColor(rlutil::RED);
-                        cout << "No pudiste evadir su ataque y te hizo " << enemigo.ataque*2 << " de dano." << endl;
-                        saludHeroe -= (enemigo.ataque*2);
-                        rlutil::setColor(rlutil::WHITE);
-                    }
-                    rlutil::anykey();
-                    system("cls");
-                }
-                if(enemigo.nombre == "Pirata"){
-                    cout << "El pirata te engana y en vez de atacarte te roba tu oro!" << endl;
+                if(enemigo.nombre == "Pirata" || enemigo.nombre == "Ladron"){
+                    cout << "El "<< enemigo.nombre << " te engana y en vez de atacarte te roba tu oro!" << endl;
                     oroAcumulado = 0;
                     cout << "Tu oro ha desaparecido!" <<endl;
                     rlutil::anykey();
                     system("cls");
                 }
 
-                if(enemigo.nombre == "Orco"){
-                    cout << "Te ataca con un golpe critico! Debes hacer un lanzamiento de 3 o menos para esquivar!" << endl;
+                if(enemigo.nombre == "Goblin" || enemigo.nombre == "Orco" || enemigo.nombre == "Hombre Lobo" || enemigo.nombre == "Elfo Oscuro"){
+                    cout << "El "<<enemigo.nombre<<" te ataca con un golpe critico! Debes hacer un lanzamiento de 3 o menos para esquivar!" << endl;
                     rlutil::anykey();
                     int resultado = lanzarDado(6);
                     cout << "Resultado del dado: " << resultado << endl;
