@@ -4,6 +4,7 @@
 #include "funciones.h"
 #include "rlutil.h"
 #include "eventos.h"
+#include "dados.h"
 
 
 
@@ -66,10 +67,153 @@ Heroe crearBerserker()
     return {"Berserker", 6, 4, 0, "Cabezaso (Hace el doble de dano, pero pierdes la mitad de tu salud)", "Arremetida Suicida (Hace el triple de dano pero quedas a 1 de salud)"};
 }
 
+void dubujarCuadrado(int posx, int posy, int tam) {
+	for (int y = 1; y <= tam / 2; y++) {
+		for (int x = 1; x <= tam; x++) {
+			rlutil::locate(x + posx, y + posy);
+			cout << (char)219;
+		}
+	}
+}
+
+void dibujarDado(int posx, int posy, int num, int tam) {
+	rlutil::setColor(rlutil::WHITE);
+	dubujarCuadrado(posx, posy);
+
+
+	rlutil::setBackgroundColor(rlutil::WHITE);
+	rlutil::setColor(rlutil::BLACK);
+
+	switch (num)
+	{
+	case 1:
+		rlutil::locate(posx + tam / 2 + 1, posy + tam / 4 + 1);
+		cout << (char)254;
+		break;
+
+	case 2:
+		rlutil::locate(posx + tam / 4 + 1, posy + tam / 4 / 4 + 1);
+		cout << (char)220;
+
+
+		rlutil::locate(posx + tam - tam / 4, posy + tam / 2 - tam / 4 / 4);
+		cout << (char)223;
+
+		break;
+
+	case 3:
+		rlutil::locate(posx + tam / 4 + 1, posy + tam / 4 / 4 + 1);
+		cout << (char)220;
+
+		rlutil::locate(posx + tam / 2 + 1, posy + tam / 4 + 1);
+		cout << (char)254;
+
+		rlutil::locate(posx + tam - tam / 4, posy + tam / 2 - tam / 4 / 4);
+		cout << (char)223;
+
+		break;
+
+
+	case 4:
+		rlutil::locate(posx + tam / 4 + 1, posy + tam / 4 / 4 + 1);
+		cout << (char)220;
+
+		rlutil::locate(posx + tam - tam / 4, posy + tam / 4 / 4 + 1);
+		cout << (char)220;
+
+		rlutil::locate(posx + tam - tam / 4, posy + tam / 2 - tam / 4 / 4);
+		cout << (char)223;
+
+		rlutil::locate(posx + tam / 4 + 1, posy + tam / 2 - tam / 4 / 4);
+		cout << (char)223;
+
+		break;
+
+	case 5:
+		rlutil::locate(posx + tam / 4 + 1, posy + tam / 4 / 4 + 1);
+		cout << (char)220;
+
+		rlutil::locate(posx + tam - tam / 4, posy + tam / 4 / 4 + 1);
+		cout << (char)220;
+
+		rlutil::locate(posx + tam / 2 + 1, posy + tam / 4 + 1);
+		cout << (char)254;
+
+		rlutil::locate(posx + tam - tam / 4, posy + tam / 2 - tam / 4 / 4);
+		cout << (char)223;
+
+		rlutil::locate(posx + tam / 4 + 1, posy + tam / 2 - tam / 4 / 4);
+		cout << (char)223;
+
+		break;
+
+
+	case 6:
+		rlutil::locate(posx + tam / 4 + 1, posy + tam / 4 / 4 + 1);
+		cout << (char)220;
+
+		rlutil::locate(posx + tam - tam / 4, posy + tam / 4 / 4 + 1);
+		cout << (char)220;
+
+		rlutil::locate(posx + tam / 2 + 1, posy + tam / 4 / 4 + 1);
+		cout << (char)220;
+
+		rlutil::locate(posx + tam / 2 + 1, posy + tam / 2 - tam / 4 / 4);
+		cout << (char)223;
+
+		rlutil::locate(posx + tam - tam / 4, posy + tam / 2 - tam / 4 / 4);
+		cout << (char)223;
+
+		rlutil::locate(posx + tam / 4 + 1, posy + tam / 2 - tam / 4 / 4);
+		cout << (char)223;
+
+		break;
+
+	default:
+		break;
+	}
+	rlutil::setBackgroundColor(rlutil::BLACK);
+
+	rlutil::setColor(rlutil::GREY);
+	// sombra
+
+	for (int y = posy + 2; y <= posy + tam / 2 + 1; y++) {
+		rlutil::locate(posx + tam + 1, y);
+		cout << (char)219;
+	}
+
+
+	for (int x = posx + 2; x <= posx + tam + 1; x++) {
+		rlutil::locate(x, posy + tam / 2 + 1);
+		cout << (char)223;
+	}
+
+	rlutil::locate(posx + tam + 1, posy + 1);
+	cout << (char)220;
+
+	rlutil::locate(2, 20);
+
+}
 // Función para lanzar un dado
-int lanzarDado(int caras)
-{
-    return rand() % caras + 1;
+int lanzarDado(int posx, int posy, int tam) {
+    int resultado = rand() % 6 + 1;
+
+    dibujarDado(posx, posy, resultado, tam);
+
+    return resultado;
+}
+
+
+void lanzarDadoConAnimacion(int posx, int posy, int tam) {
+    for (int i = 0; i < 10; i++) {
+        int resultadoTemporal = rand() % 6 + 1;
+        dibujarDado(posx, posy, resultadoTemporal, tam);
+        rlutil::msleep(100); // Pausa breve para la animación
+       // rlutil::cls();       // Limpia la consola antes de dibujar el siguiente dado
+    }
+
+    int resultadoFinal = lanzarDado(posx, posy, tam); // Llama a la función original para el resultado final
+   // cout << "¡El resultado final del dado es: " << resultadoFinal << "!" << endl;
 }
 
 // Funcion para mostrar el estado actual del heroe.
@@ -189,10 +333,12 @@ bool combatir(string& nombre, int& saludHeroe, int& ataqueHeroe, int& oroAcumula
             {
                 cout << "Has atacado, haras dano igual a tu lanzamiento multiplicado por tu ataque..." << endl;
                 rlutil::anykey();
-                int  dano = lanzarDado(6);
+                lanzarDadoConAnimacion(5, 8);
+                int dano = lanzarDado(5, 8);
                 cout << "Tu dano sera de: "<<dano*ataqueHeroe<<". Ahora debes sacar 3 o menos para lograr conectar a tu enemigo."<< endl;
                 rlutil::anykey();
-                int resultado=lanzarDado(6);
+                lanzarDadoConAnimacion(5, 8);
+                int resultado = lanzarDado(5, 8);
                 cout << "Resultado del dado: " << resultado << endl;
                 if (resultado <= 3)
                 {
@@ -210,7 +356,8 @@ bool combatir(string& nombre, int& saludHeroe, int& ataqueHeroe, int& oroAcumula
 
                 cout << "Has atacado, debes hacer un lanzamiento 3 o menos para acertar..." << endl;
                 rlutil::anykey();
-                int  resultado = lanzarDado(6);
+                lanzarDadoConAnimacion(5, 8);
+                int resultado = lanzarDado(5, 8);
                 cout << "Resultado del dado: " << resultado << endl;
                 if (resultado <= 3)
                 {
@@ -246,8 +393,11 @@ bool combatir(string& nombre, int& saludHeroe, int& ataqueHeroe, int& oroAcumula
         if (enemigo.salud > 0)
         {
             cout << "Turno del enemigo!" << endl;
-            int accionEnemigo = lanzarDado(6);
-            accionEnemigo = lanzarDado(6);
+           // lanzarDadoConAnimacion(5, 8);
+            int resultado = lanzarDado(5, 8);
+          //  int accionEnemigo = lanzarDado(6);
+           // accionEnemigo = lanzarDado(6);
+           int accionEnemigo = resultado;
             if (accionEnemigo==6)
             {
 
@@ -262,7 +412,8 @@ bool combatir(string& nombre, int& saludHeroe, int& ataqueHeroe, int& oroAcumula
                 if(enemigo.nombre == "Goblin" || enemigo.nombre == "Orco" || enemigo.nombre == "Hombre Lobo" || enemigo.nombre == "Elfo Oscuro"){
                     cout << "El "<<enemigo.nombre<<" te ataca con un golpe critico! Debes hacer un lanzamiento de 3 o menos para esquivar!" << endl;
                     rlutil::anykey();
-                    int resultado = lanzarDado(6);
+                    lanzarDadoConAnimacion(5, 8);
+                    int resultado = lanzarDado(5, 8);
                     cout << "Resultado del dado: " << resultado << endl;
 
                     if (resultado <= 3)
@@ -284,10 +435,12 @@ bool combatir(string& nombre, int& saludHeroe, int& ataqueHeroe, int& oroAcumula
 
             else
             {
-                int resultado = lanzarDado(6);
+               // lanzarDadoConAnimacion(5, 8);
+                int resultado = lanzarDado(5, 8);
                 cout << "Te ataca, debes hacer un lanzamiento de 3 o menos para esquivar..." << endl;
                 rlutil::anykey();
-                resultado = lanzarDado(6);
+                lanzarDadoConAnimacion(5, 8);
+                resultado = lanzarDado(5, 8);
                 cout << "Resultado del dado: " << resultado << endl;
 
                 if (resultado <= 3)

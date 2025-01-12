@@ -26,7 +26,9 @@ Heroe crearMago();
 Heroe crearBerserker();
 
 
-int lanzarDado(int caras) ;
+int lanzarDado(int posx = 5, int posy = 8, int tam = 7);
+void dibujarDado(int posx, int posy, int num, int tam);
+void lanzarDadoConAnimacion(int posx = 5, int posy = 8, int tam = 7);
 void mostrarEstado(std::string nombre,int saludHeroe, int oroAcumulado);
 bool combatir(std::string& nombre, int& saludHeroe, int& ataqueHeroe, int& oroAcumulado, Enemigo enemigo, std::string claseHeroe, std::string habilidadEspecial,std::string habilidadDefinitiva);
 

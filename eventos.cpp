@@ -32,10 +32,7 @@ void trampa(int& saludHeroe, int& ataqueHeroe, int& oroAcumulado) {
             return;
         }
     }
-
-    system("pause");
     system("cls");
-
     }
 
 

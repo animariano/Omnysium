@@ -7,6 +7,7 @@
 #include <cstdlib>
 #include <ctime>
 #include "rlutil.h"
+#include "dados.h"
 
 using namespace std;
 

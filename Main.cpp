@@ -5,6 +5,7 @@
 #include "funciones.h"
 #include "jugar.h"
 #include "rlutil.h"
+#include "dados.h"
 
 using namespace std;
 
