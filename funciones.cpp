@@ -76,6 +76,8 @@ void dubujarCuadrado(int posx, int posy, int tam) {
 	}
 }
 
+// Las siguientes 3 funciones pertenecen a Brian Lara. https://github.com/TheRegext/dibujar-dados-consola
+
 void dibujarDado(int posx, int posy, int num, int tam) {
 	rlutil::setColor(rlutil::WHITE);
 	dubujarCuadrado(posx, posy);
@@ -493,7 +495,6 @@ void ejecutarEventoAleatorio(int& saludHeroe, int& ataqueHeroe, int& oroAcumulad
 
     eventoSeleccionado.efecto(saludHeroe, ataqueHeroe, oroAcumulado);
 
-    rlutil::anykey();
     system("cls");
 }
 

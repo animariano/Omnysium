@@ -2,6 +2,7 @@
 #include "eventos.h"
 #include "funciones.h"
 #include "rlutil.h"
+#include "dados.h"
 #include <iostream>
 using namespace std;
 
@@ -13,22 +14,24 @@ void trampa(int& saludHeroe, int& ataqueHeroe, int& oroAcumulado) {
     cout << "Lanza el dado para intentar esquivarla. Necesitas sacar un 3 o menos." << endl;
 
     rlutil::anykey();
-    int resultado = lanzarDado(6);
+    lanzarDadoConAnimacion(5, 8);
+    int resultado = lanzarDado(5, 8);
     cout << "Resultado del dado: " << resultado << endl;
 
     if (resultado <= 3) {
         cout << "Esquivas la trampa con exito!" << endl;
+        rlutil::anykey();
     } else {
         int dano = 2;
         saludHeroe -= dano;
         rlutil::setColor(rlutil::RED);
         cout << "No lograste esquivar la trampa. Pierdes " << dano << " de salud." << endl;
         rlutil::setColor(rlutil::WHITE);
+        rlutil::anykey();
 
         if (saludHeroe <= 0) {
             cout << "Tu salud ha caido a 0. ¡Es el fin de tu aventura!" << endl;
             mostrarDerrota();
-            system("pause");
             return;
         }
     }
@@ -39,16 +42,19 @@ void trampa(int& saludHeroe, int& ataqueHeroe, int& oroAcumulado) {
 void equipoEncontrado(int& saludHeroe, int& ataqueHeroe, int& oroAcumulado) {
     cout << "Encontraste un equipo abandonado! Ganas +1 de ataque." << endl;
     ataqueHeroe += 1;
+    rlutil::anykey();
 }
 
 void oroEncontrado(int& saludHeroe, int& ataqueHeroe, int& oroAcumulado) {
     cout << "Descubriste un cofre escondido lleno de oro!" << endl;
     oroAcumulado += 5;
+    rlutil::anykey();
 }
 
 void fuenteSalud(int& saludHeroe, int&ataqueHeroe, int& OroAcumulado){
     cout << "Descubriste una con poderes curativos! Duplicas tu salud!" << endl;
     saludHeroe += saludHeroe;
+    rlutil::anykey();
 }
 
 void cuevaMisteriosa(int& saludHeroe, int& ataqueHeroe, int& oroAcumulado) {
@@ -65,7 +71,9 @@ void cuevaMisteriosa(int& saludHeroe, int& ataqueHeroe, int& oroAcumulado) {
             cout << "El sendero oscuro te lleva a una trampa. Una roca cae desde el techo!" << endl;
             cout << "Intentas esquivarla..." << endl;
             rlutil::anykey();
-            if (lanzarDado(6) <= 3) {
+            lanzarDadoConAnimacion(5, 8);
+            int resultado = lanzarDado(5, 8);
+            if (resultado<= 3) {
                 cout << "Esquivaste la roca justo a tiempo! Sales ileso." << endl;
             } else {
                 int dano = 5;
