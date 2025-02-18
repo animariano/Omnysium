@@ -101,7 +101,7 @@
 	"jugar.h"
 	"rlutil.h"
 
-1736950494 source:c:\users\usuario\desktop\omnysium versiones\omnysium- juego\eventos.cpp
+1736950968 source:c:\users\usuario\desktop\omnysium versiones\omnysium- juego\eventos.cpp
 	"eventos.h"
 	"funciones.h"
 	"rlutil.h"
@@ -128,7 +128,7 @@
 	<sys/types.h>
 	<sys/time.h>
 
-1736949997 source:c:\users\usuario\desktop\omnysium versiones\omnysium- juego\funciones.cpp
+1737242970 source:c:\users\usuario\desktop\omnysium versiones\omnysium- juego\funciones.cpp
 	<iostream>
 	"funciones.h"
 	"rlutil.h"

@@ -458,6 +458,7 @@ bool combatir(string& nombre, int& saludHeroe, int& ataqueHeroe, int& oroAcumula
                     if (escudoDeFuego==true)
                     {
                         cout << "Tu escudo de fuego lastima al enemigo y le hace 2 de dano. " << endl;
+                        enemigo.salud-=2;
                     }
 
                 }
